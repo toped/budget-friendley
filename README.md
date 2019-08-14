@@ -1,4 +1,9 @@
-# MyBudget
+# Budget-Friendly
+
+#### If time is money are ATM's time machines? 🤔
+
+Budget-friendly is a quick financial dashboard showing a categorical breakdown of expenses. Just upload an excel file of transactions and that's it.
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.0.
 
