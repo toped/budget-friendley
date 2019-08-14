@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Monthly Income</h3>
+            </div>
+        </div>
+
+        <form [formGroup]="incomeForm">
+            <div>
+                $
+                <mat-form-field>
+                    <input matInput placeholder="Enter Projected Monthly Income" id="projected-input" formControlName="projectedIncome" type="number" value="4800">
+                </mat-form-field>
+            </div>
+
+            <div>
+                $
+                <mat-form-field>
+                    <input matInput placeholder="Enter Actual Monthly Income" id="actual-input" formControlName="actualIncome" type="number" value="0">
+                </mat-form-field>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-6 summary-panel">
+        <div class="row">
+            <div class="col-md-4 border-right ">
+                <small class="text-muted"><b>Projected Income</b></small>
+                <h1 class="total">${{incomeForm.get('projectedIncome').value.toLocaleString('en-US', {minimumFractionDigits: 2})}}</h1>
+            </div>
+            <div class="col-md-4 border-right ">
+                <small class="text-muted"><b>Actual Income</b></small>
+                <h1 class="total">${{incomeForm.get('actualIncome').value.toLocaleString('en-US', {minimumFractionDigits: 2})}}</h1>
+            </div>
+            <div class="col-md-4">
+                <small class="text-muted"><b>Left to Make</b></small>
+                <h1 class="total" [ngClass]="{'amount-red': incomeForm.get('projectedIncome').value - incomeForm.get('actualIncome').value > 0, 'amount-green': incomeForm.get('projectedIncome').value - incomeForm.get('actualIncome').value <= 0}">${{getLeftToMake()}}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 border-right ">
+                <small class="text-muted"><b>Projected Expenses</b></small>
+                <h1 class="total">${{projectedTotal?.toLocaleString('en-US', {minimumFractionDigits: 2})}}</h1>
+            </div>
+            <div class="col-md-4 border-right ">
+                <small class="text-muted"><b>Actual Expenses</b></small>
+                <h1 class="total">${{actualTotal?.toLocaleString('en-US', {minimumFractionDigits: 2})}}</h1>
+            </div>
+            <div class="col-md-4">
+                <small class="text-muted"><b>Left to Spend</b></small>
+                <h1 class="total" [ngClass]="{'amount-green': projectedTotal >= leftToSpend, 'amount-red': projectedTotal < leftToSpend}">${{leftToSpend?.toLocaleString('en-US', {minimumFractionDigits: 2})}}</h1>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-4 border-right ">
+                <small class="text-muted"><b>Projected Balance</b></small>
+                <h1 class="total" [ngClass]="{'amount-green': incomeForm.get('projectedIncome').value - projectedTotal >= 0, 'amount-red': incomeForm.get('projectedIncome').value - projectedTotal < 0}">${{(incomeForm.get('projectedIncome').value - projectedTotal).toLocaleString('en-US', {minimumFractionDigits: 2})}}</h1>
+            </div>
+            <div class="col-md-4 border-right ">
+                <small class="text-muted"><b>Actual Balance</b></small>
+                <h1 class="total" [ngClass]="{'amount-green': incomeForm.get('actualIncome').value - actualTotal >= 0, 'amount-red': incomeForm.get('actualIncome').value - actualTotal < 0}">${{(incomeForm.get('actualIncome').value - actualTotal).toLocaleString('en-US', {minimumFractionDigits: 2})}}</h1>
+            </div>
+            <div class="col-md-4">
+                <i *ngIf="(incomeForm.get('projectedIncome').value - projectedTotal) < (incomeForm.get('actualIncome').value - actualTotal)" class="fa fa-thumbs-up result-thumb amount-green" aria-hidden="true"></i>
+                <i *ngIf="(incomeForm.get('projectedIncome').value - projectedTotal) >= (incomeForm.get('actualIncome').value - actualTotal)" class="fa fa-thumbs-down result-thumb amount-red" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+</div>

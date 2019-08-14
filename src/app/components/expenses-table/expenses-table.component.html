@@ -1,0 +1,61 @@
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Transaction Date Column -->
+    <ng-container matColumnDef="transaction date">
+        <th mat-header-cell *matHeaderCellDef> Transaction Date </th>
+        <td mat-cell *matCellDef="let element"> {{getLocaleDateString(element.transactionDate)}} </td>
+    </ng-container>
+
+    <!-- Post Date Column -->
+    <ng-container matColumnDef="post date">
+        <th mat-header-cell *matHeaderCellDef> Post Date </th>
+        <td mat-cell *matCellDef="let element"> {{getLocaleDateString(element.postDate)}} </td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let element"> {{element.desc}} </td>
+    </ng-container>
+
+    <!-- Category Column -->
+    <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef> Category </th>
+        <td mat-cell *matCellDef="let element" [style.textAlign]="getCategoryName(element) !== 9999 ? 'left' : 'left'">
+            <ng-container *ngIf="getCategoryName(element) !== 9999">
+                {{getCategoryName(element)}}
+            </ng-container>
+            <ng-container *ngIf="getCategoryName(element) === 9999">
+                <i class="fa fa-exclamation-circle" aria-hidden="true" style="color:rgb(233, 176, 0)"></i>
+            </ng-container>
+        </td>
+    </ng-container>
+
+    <!-- Type Column -->
+    <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+    </ng-container>
+
+    <!-- Amount Column -->
+    <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef> Amount </th>
+        <td mat-cell *matCellDef="let element"> ${{element.amount * -1}} </td>
+    </ng-container>
+
+    <!-- Edit Column -->
+    <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef> Edit Category </th>
+        <td mat-cell *matCellDef="let element">
+            <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="openCategoryDialog(element)"></i>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
