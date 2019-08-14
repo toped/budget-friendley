@@ -1,0 +1,22 @@
+table {
+    width: 100%;
+}
+
+.filter {
+    width: 100%;
+}
+
+.amount-red {
+    background-color: rgb(255, 199, 206);
+    color: rgb(156, 0, 7);
+}
+
+.amount-green {
+    background-color: rgb(198, 239, 206);
+    color: rgb(0, 97, 0);
+}
+
+.amount-warning {
+    background-color: rgb(255, 235, 155);
+    color: rgb(156, 101, 1);
+}

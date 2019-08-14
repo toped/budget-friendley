@@ -1,0 +1,46 @@
+.total {
+    font-size: 16px;
+    font-size: 1.5vw;
+    text-align: center;
+    margin-top: 0;
+}
+
+.amount-red {
+    color: rgb(156, 0, 7);
+}
+
+.amount-green {
+    color: rgb(9, 167, 35);
+}
+
+.text-muted {
+    color: #6c757d;
+}
+
+.border-right {
+    border-right: 1px solid #222;
+}
+
+hr {
+    border-top: 1px solid #222;
+}
+
+.mat-form-field {
+    width: 100%
+}
+
+input {
+    font-size: 20px;
+}
+
+.result-thumb {
+    font-size: 44px;
+    text-align: center;
+    width: 100%;
+}
+
+.summary-panel {
+    background: rgba(211, 211, 211, .25);
+    padding: 10px;
+    border-radius: 4px;
+}

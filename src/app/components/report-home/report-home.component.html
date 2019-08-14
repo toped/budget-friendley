@@ -1,0 +1,30 @@
+<app-navigation></app-navigation>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Financial Dashboard </h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <!-- <app-report-summary [categories]="categories"></app-report-summary> -->
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            <app-category-table [categories]="categories"></app-category-table>
+        </div>
+        <div class="col-md-6">
+            <app-bar-chart componentTitle="Actual vs Projected Amount of Income Spent" [chartData]="chartData"></app-bar-chart>
+        </div>
+        <div class="col-md-6">
+            <!-- <app-pie-chart componentTitle="Actual vs Projected Amount of Income Spent" [chartData]="chartData"></app-pie-chart> -->
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <app-xlsx-reader (handleFile)="didUploadFile($event)"></app-xlsx-reader>
+            <app-expenses-table [transactions]="transactionsValue" [categories]="categories" [vendors]="vendors" (vendorsChanged)="doUpdateData($event)"></app-expenses-table>
+        </div>
+    </div>
+</div>
